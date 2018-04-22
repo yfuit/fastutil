@@ -18,13 +18,13 @@
 },
 
 {"id":20,"text":"第三方","iconCls":"fa fa-cube","state":"closed","children":[
-		{"id":21,"text":"优酷","iconCls":"fa fa-camera-retro"},
-		{"id":22,"text":"百度","iconCls":"fa fa-circle-thin"}]
+		{"id":21,"text":"优酷","iconCls":"fa fa-camera-retro","attributes":{"url":"https://www.baidu.com"}}
+		]
 },
 
 {"id":30,"text":"用户管理","iconCls":"fa fa-database","state":"closed","children":[
 		{"id":31,"text":"用户信息","iconCls":"fa fa-user","attributes":{"url":"tmpdata/list.html"}},
-		{"id":32,"text":"百度","iconCls":"fa fa-folder-open-o"}]
+		]
 },
 
 {"id":40,"text":"测试","iconCls":"fa fa-paper-plane-o","state":"closed","children":[
