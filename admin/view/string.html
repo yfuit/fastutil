@@ -37,11 +37,17 @@
 		<table >
 			
 			<tr>
-				<td colspan="2" style="height:10%"><textarea  v-model="sTmp" ></textarea></td>
+				<td colspan="2" style="height:10%">
+					<textarea  v-model="sTmp" placeholder="模板"></textarea>
+				</td>
 			</tr>
 			<tr>
-				<td style="height:85%;width:35%"><textarea v-model="sList"></textarea></td>
-				<td><textarea v-model="sVal"></textarea></td>
+				<td style="height:85%;width:35%">
+					<textarea v-model="sList" placeholder="数据"></textarea>
+				</td>
+				<td>
+					<textarea v-model="sVal" placeholder="结果"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" style="height:5%"><textarea  v-model="sCode"></textarea></td>

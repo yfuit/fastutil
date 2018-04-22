@@ -14,9 +14,13 @@ $(function(){
 							if(node.attributes){
 								url = node.attributes.url;
 							}else{
-								alert("无效菜单"+node.text);return;
+								//alert("无效菜单"+node.text);return;
+								$.messager.alert("提示消息", "无效菜单["+node.text+"]");return;
 							}
-							if(!url){alert("无效菜单"+node.text);return;}
+							if(!url){
+								//alert("无效菜单"+node.text);return;
+								$.messager.alert("提示消息", "无效菜单["+node.text+"]");return;
+							}
 							
 							$('#tabs').tabs('add',{
 								id:index,
