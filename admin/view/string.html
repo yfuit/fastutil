@@ -35,12 +35,16 @@
 <body >
 	<div id='app' style="">
 		<table >
+			
 			<tr>
 				<td colspan="2" style="height:10%"><textarea  v-model="sTmp" ></textarea></td>
 			</tr>
 			<tr>
-				<td height="85%;"><textarea v-model="sList"></textarea></td>
+				<td style="height:85%;width:35%"><textarea v-model="sList"></textarea></td>
 				<td><textarea v-model="sVal"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="height:5%"><textarea  v-model="sCode"></textarea></td>
 			</tr>
 
 		</table>
@@ -51,13 +55,14 @@
 </body>
 <script type="text/javascript">
 	
-	let app = new Vue({
+	let app = new Vue({		
 	  el: '#app',
 
 	  data: {
 	  	sTmp:'',
 	  	sList:'',
-	  	sVal:''
+	  	sVal:'',
+	  	sCode:'空格{\t},换号{\n},>{&gt;},<{&lt;}'
 	  },
 
 	  watch:{
@@ -79,13 +84,9 @@
 	  		let content = '';
 	  		let slistAy = this.sList.split('\n');
 	  		for(let oneline in slistAy){
-	  			//console.log('oneline'+oneline)
-	  			//console.log('onelineValue'+slistAy[oneline])
-	  			
+	  		
 	  			let simpleOne = slistAy[oneline].split('\t');
 	  			
-	  			//console.log('simpleOneArray'+simpleOne)
-	  			//console.log('simpleOneLength'+simpleOne)
 	  			let tmp  = this.sTmp;
 	  			for (let i = simpleOne.length - 1; i >= 0; i--) {
 	  				tmp = tmp.replace(new RegExp('\\{'+i+'\\}','g'),simpleOne[i]);

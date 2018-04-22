@@ -1,8 +1,10 @@
 [
 {"id":100,"text":"HEHEDA","iconCls":"fa fa-html5",
 	"children":[
-		{"id":101,"text":"快捷字符","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
-		{"id":102,"text":"快捷BATIS","iconCls":"fa fa-circle-thin"}]
+		{"id":101,"text":"WEB URL","iconCls":"fa fa-circle-thin","attributes":{"url":"view/weburl.html"}},
+		{"id":102,"text":"快捷字符","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
+		{"id":103,"text":"快捷BATIS","iconCls":"fa fa-circle-thin"}
+	]
 },
 
 
