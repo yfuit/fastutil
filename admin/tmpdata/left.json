@@ -1,5 +1,5 @@
 [
-{"id":100,"text":"HE HE DA","iconCls":"fa fa-cube","state":"closed","children":[
+{"id":100,"text":"HE HE DA","iconCls":"fa fa-html5","state":"closed","children":[
 		{"id":101,"text":"快捷字符","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
 		{"id":102,"text":"快捷BATIS","iconCls":"fa fa-circle-thin"}]
 },
