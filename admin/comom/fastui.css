@@ -23,10 +23,10 @@
     height: 30px;
     vertical-align: top;
     overflow: hidden;
-    background: url(./../easyui/themes/metro/images/tree_icons.png) no-repeat -18px 7px;
+    background: url(./../static/easyui/themes/metro/images/tree_icons.png) no-repeat -18px 7px;
 }
 .tree-collapsed {
-    background: url(./../easyui/themes/metro/images/tree_icons.png) no-repeat 0px 7px;
+    background: url(./../static/easyui/themes/metro/images/tree_icons.png) no-repeat 0px 7px;
     display: inline-block;
     width: 16px;
     height: 30px;
