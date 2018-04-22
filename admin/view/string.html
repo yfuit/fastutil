@@ -1,11 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>字符快捷操作</title>
+	<script src="../static/vue.js"></script>
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin: 0;
+			overflow-y: hidden;
+		}
+		#app{
+			height:100%;width:100%;position:absolute;
+		}
+		textarea{
+			width:100%;
+			height:100%;
+		}
+
+		
+		table{
+			height: 99%;
+			width: 99%;
+		}
+
+		td{
+			padding:5px;
+
+		}
+		
+
+	</style>
 </head>
-<body>
+<body >
+	<div id='app' style="">
+		<table >
+			<tr>
+				<td colspan="2" style="height:10%"><textarea  v-model="sTmp" ></textarea></td>
+			</tr>
+			<tr>
+				<td height="85%;"><textarea v-model="sList"></textarea></td>
+				<td><textarea v-model="sVal"></textarea></td>
+			</tr>
 
-	String
-
+		</table>
+		
+		1
+		
+	</div>
 </body>
+<script type="text/javascript">
+	
+	let app = new Vue({
+	  el: '#app',
+
+	  data: {
+	  	sTmp:'',
+	  	sList:'',
+	  	sVal:''
+	  },
+
+	  watch:{
+		sTmp:function(){
+			this.sTobe();
+		},
+		sList:function(){
+			this.sTobe();
+		}
+	  },
+
+	  methods:{
+	  	sTobe:function(){
+	  		//var a = this.sTmp.split(/{\d}/);
+
+	  		if(this.sTmp =='' ||  this.sList==''){
+	  			return;
+	  		}
+	  		let content = '';
+	  		let slistAy = this.sList.split('\n');
+	  		for(let oneline in slistAy){
+	  			//console.log('oneline'+oneline)
+	  			//console.log('onelineValue'+slistAy[oneline])
+	  			
+	  			let simpleOne = slistAy[oneline].split('\t');
+	  			
+	  			//console.log('simpleOneArray'+simpleOne)
+	  			//console.log('simpleOneLength'+simpleOne)
+	  			let tmp  = this.sTmp;
+	  			for (let i = simpleOne.length - 1; i >= 0; i--) {
+	  				tmp = tmp.replace(new RegExp('\\{'+i+'\\}','g'),simpleOne[i]);
+	  			}
+
+	  			content = content + tmp + '\n';
+	  		}
+	  		this.sVal = content;
+			//this.sVal = this.sTmp + this.sList;
+	  	}
+	  }
+
+    });
+
+</script>
 </html>

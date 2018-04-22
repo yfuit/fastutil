@@ -1,11 +1,12 @@
 [
-{"id":100,"text":"HE HE DA","iconCls":"fa fa-html5","state":"closed","children":[
+{"id":100,"text":"HEHEDA","iconCls":"fa fa-html5",
+	"children":[
 		{"id":101,"text":"快捷字符","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
 		{"id":102,"text":"快捷BATIS","iconCls":"fa fa-circle-thin"}]
 },
 
 
-{"id":10,"text":"系统管理","iconCls":"fa fa-windows"    
+{"id":10,"text":"系统管理","iconCls":"fa fa-windows","state":"closed" 
 	,"children":[
 		{"id":11,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"tmpdata/home.html"}},
 		{"id":12,"text":"权限管理","iconCls":"fa fa-circle-thin"},
