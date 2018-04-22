@@ -14,7 +14,8 @@
 		{"id":12,"text":"权限管理","iconCls":"fa fa-circle-thin"},
 		{"id":13,"text":"index.html","iconCls":"fa fa-circle-thin"},
 		{"id":14,"text":"about.html","iconCls":"fa fa-circle-thin"},
-		{"id":15,"text":"welcome.html","iconCls":"fa fa-circle-thin"}]
+		{"id":15,"text":"welcome.html","iconCls":"fa fa-circle-thin"}
+	]
 },
 
 {"id":20,"text":"第三方","iconCls":"fa fa-cube","state":"closed","children":[
@@ -23,7 +24,7 @@
 },
 
 {"id":30,"text":"用户管理","iconCls":"fa fa-database","state":"closed","children":[
-		{"id":31,"text":"用户信息","iconCls":"fa fa-user","attributes":{"url":"tmpdata/list.html"}},
+		{"id":31,"text":"用户信息","iconCls":"fa fa-user","attributes":{"url":"tmpdata/list.html"}}
 		]
 },
 
