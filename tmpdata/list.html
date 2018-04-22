@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户信息</title>
+		<link rel="stylesheet" type="text/css" href="../../easyui/themes/metro/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css"/>
+		<link rel="stylesheet" type="text/css" href="../../fontawesome/css/font-awesome.min.css"/>
+		<script src="../../easyui/jquery.min.js"></script>
+		<script src="../../easyui/jquery.easyui.min.js"></script>
+		<script src="../../easyui/locale/easyui-lang-zh_CN.js"></script>
+		<script src="../comom/fastlist.js" ></script>
+	</head>
+	<body style="overflow: auto;padding: 5px;">
+		 <div class="easyui-layout" fit="true" >
+	        <div data-options="region:'north',split:true,height:'auto'" ><!-- ,title:'用户管理',collapsible:false -->
+        		<!-- 查询表单 -->
+				<form method="post" class="easyui-form searchForm" >
+		    		<input class="easyui-textbox" style="width:200px"
+		    			data-options="buttonText:'姓名',buttonAlign:'left'" />
+		    		<input class="easyui-textbox" style="width:200px"
+		    			data-options="iconCls:'icon-search',buttonText:'姓名',buttonAlign:'left'" />
+		    		<input class="easyui-datebox" data-options="buttonText:'日期',buttonAlign:'left'" style="width:200px"/>
+		    		<input class="easyui-datetimebox"  data-options="buttonText:'时间',buttonAlign:'left'" style="width:200px"/>
+		    		
+		            <select class="easyui-combobox"  style="width:200px" name="language" style=""
+		            	data-options="buttonText:'选择',buttonAlign:'left'"  >
+		            	<option value="ar">Arabic</option><option value="bg">Bulgarian</option>
+		            	<option value="ca">Catalan</option><option value="zh-cht">Chinese Traditional</option>
+		            	<option value="fi">Finnish</option>
+		            </select>
+		        
+		    	</form>
+	        </div>
+	        
+	        <div data-options="region:'center',border:0">
+	        	<table id="dg" class="easyui-datagrid" ></table>
+	        </div>	
+	        
+	        <div data-options="region:'south',split:true" style="height:5px;border: 0;"></div>
+		</div>
+		
+		<!-- 工具栏 -->
+	    <div id="toolbar" style="display: none;" >
+	    	<button class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add()">新增</button>
+        	<button class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</button>
+        	<button class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="edit()">编辑</button>
+        	<span class= "tool-seq" ></span>
+	        <a id="btn-edit" href="#" class="easyui-splitbutton" data-options="menu:'#mm1',iconCls:'fa fa-wrench fa-lg'">功能</a>
+	        <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'fa fa-list-alt fa-lg'">菜单</a>
+			
+			<button class="easyui-linkbutton" style="float: right;" data-options="iconCls:'fa fa-refresh',plain:true" data-target="[reset|.searchForm]" >重置</button>
+			<button class="easyui-linkbutton" style="float: right;" data-options="iconCls:'fa fa-search',plain:true" data-target="[query|.searchForm|#dg]" >查询</button>
+	    </div>
+	    <!-- 工具栏选项 -->
+	    <div id="mm1" style="width:150px;display: none;">
+	        <div data-options="iconCls:'icon-undo'">Undo</div>
+	        <div data-options="iconCls:'icon-redo'">Redo</div>
+	        <div class="menu-sep"></div>
+	        <div>Cut</div>
+	        <div>Copy</div>
+	        <div>Paste</div>
+	        <div class="menu-sep"></div>
+	        <div>
+	            <span>Toolbar</span>
+	            <div>
+	                <div>Address</div>
+	                <div>Link</div>
+	                <div>Navigation Toolbar</div>
+	                <div>Bookmark Toolbar</div>
+	                <div class="menu-sep"></div>
+	                <div>New Toolbar...</div>
+	            </div>
+	        </div>
+	        <div data-options="iconCls:'icon-remove'">Delete</div>
+	        <div>Select All</div>
+	    </div>
+	    
+	    <!--新增编辑页面 -->
+	    <div id="editDialog" class="easyui-dialog" style="width:440px;height:240px;display: none"
+		        data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,closable:true,buttons: [{
+	                    text:'保存',iconCls:'icon-ok', handler:save
+	                },{
+					    text:'&nbsp;&nbsp;取消&nbsp;&nbsp;',
+					    handler:function(){$('#editDialog').dialog('close');}
+					}]" >
+			<form id="editForm" method="post" class="easyui-form" >
+				<input name="method" type="hidden"/>
+				<input name="car_id" type="hidden"/>
+				
+				<input class="easyui-textbox" data-options="buttonText:'姓名',buttonAlign:'left'" style="width:200px"/>
+        		<input class="easyui-textbox" data-options="iconCls:'icon-search',buttonText:'姓名',buttonAlign:'left'" style="width:200px"/>
+        		<input class="easyui-datebox" data-options="buttonText:'日期',buttonAlign:'left'" style="width:200px"/>
+        		<input class="easyui-datetimebox"  data-options="buttonText:'时间',buttonAlign:'left'" style="width:200px"/>
+        		
+        		<input name="car_number" style="width:200px"
+							class="f1 easyui-textbox" data-options="buttonText:'车牌',buttonAlign:'left',required:true,validType:'length[6,9]'" />
+				<input name="phone" style="width:200px" class="f1 easyui-numberbox" data-options="buttonText:'手机号码',buttonAlign:'left',required:true,validType:'length[11,11]'" />
+				<input name="driver" style="width:200px" class="f1 easyui-textbox" data-options="buttonText:'车型',buttonAlign:'left',required:true" />	
+				<select id="isrun" name="isrun" style="width:200px" class="f1 easyui-combobox" data-options="buttonText:'是否组队',buttonAlign:'left',required:true" >
+					<option value="N">否</option>
+					<option value="Y">是</option>
+				</select>
+			</form>
+		</div>
+		
+		<script type="text/javascript">
+			
+			function add(){
+				$("#editDialog").dialog({title:'新增用户'});
+				$('#editForm').form('disableValidation');
+				$('#editForm').form('reset');
+				$('[id=titleimage]').next().attr('src','${ctx}/static/common/null.jpg');
+				$('#editForm').form('load',{method:'add'});
+				$('#editDialog').dialog('open');
+			}
+			function edit(){
+				var rows = $('#dg').datagrid('getSelections');
+				var row =rows[0];// $('#dg').datagrid('getData').rows[index];
+				$("#editDialog").dialog({title:'编辑'+row.景点装备表});
+				$('#editForm').form('reset');
+				$('#editForm').form('load',{
+					method:'edit',
+					id:row.id,
+					scenic_id:row.scenicId,
+					name:row.name,
+					required:row.required,
+					createtime:row.createtime,
+					updatetime:row.updatetime,
+					deleted:row.deleted,
+				});
+				$('#editDialog').dialog('open');
+			}
+			function del(){
+				var rows = $('#dg').datagrid('getSelections');
+				var row =rows[0];// $('#dg').datagrid('getData').rows[index];
+				$.messager.confirm('信息提示', '确定要删除该'+row.name+'?', function(r){
+				    if(r){
+				    	
+				    	getPost('${ctx}/scenic_tools/save.do',{id:row.id,method:'del'},function(res){
+				    		if(res.code == '100'){
+								$.messager.alert('信息提示',res.msg,'info');
+								$('#dd').dialog('close');
+								$('#dg').datagrid('reload');
+							}else{
+								$.messager.alert('信息提示',res.msg,'error');
+							}
+						});
+				    	/*$.post('${ctx}/scenic_tools/save.do',{id:row.id,method:'del'},function(res){
+				    		if(res.code == '100'){
+								$.messager.alert('信息提示',res.msg,'info');
+								$('#dd').dialog('close');
+								$('#dg').datagrid('reload');
+							}else{
+								$.messager.alert('信息提示',res.msg,'error');
+							}
+						})*/
+				    }
+				}); 
+			}
+
+			//保存
+			function save(){
+				if($('#editDialog').form('enableValidation').form('validate')){
+					$.ajax({
+					    url: '${ctx}/car/save.do',
+					    type: 'POST',dataType:"json", 
+					    cache: false,
+					    data: new FormData($("#editDialog")[0]),
+					    processData: false,
+					    contentType: false,
+					}).done(function(res) {
+						if(res.code == '100'){
+							$.messager.alert('信息提示',res.msg,'info');
+							$('#dd').dialog('close');
+							$('#dg').datagrid('reload');
+						}else{
+							$.messager.alert('信息提示',res.msg,'error');
+						}
+					}).fail(function(res) {
+						$.messager.alert('信息提示','操作异常','error');
+					}); 
+				}
+			}
+			
+			$(function(){
+				$('#dg').datagrid({
+					//title:'标题',
+					//width:1000,nowrap:false,
+					//fitColumns:true,
+					fit:true,striped:true,
+				    collapsible:true,
+				    url:'list.json',
+				    pageSize:10,
+				    pageList:[10,20],
+				    rownumbers:true,method:'get',
+				    pagination:true,
+				    
+				    singleSelect:false,
+					//singleSelect:true,//单选
+					//selectOnCheck:true,
+					//checkOnSelect:true,
+					toolbar:'#toolbar',
+					
+					frozenColumns:[[
+						{title:'选择',field:'ck',width:100,align:'center',checkbox:true},
+						{title:'编号',field:'productid',width:100,align:'center',frozen:true,sortable:false},
+						{title:'名称',field:'productname',width:100,align:'center',frozen:true,sortable:false},
+					]],
+				    columns:[[
+						//{title:'主键',field:'scenicId',width:100,align:'center',sortable:false},
+						//{title:'区域外键',field:'areaId',width:100,align:'center',sortable:false},
+						{title:'编号',field:'productid',width:100,align:'center',sortable:false},
+						{title:'名称',field:'productname',width:100,align:'center',sortable:false},
+						{title:'单价',field:'unitcost',width:100,align:'center',sortable:false},
+						{title:'状态',field:'status',width:100,align:'center',sortable:false},
+						{title:'价格',field:'listprice',width:100,align:'center',sortable:false},
+						{title:'属性',field:'attr1',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+						{title:'名目编号',field:'itemid',width:100,align:'center',sortable:false},
+					
+						{title:'操作',field:'action',align:'center',formatter:function(value,row,index){
+								return '<a class="easyui-linkbutton c6" style="padding:8px;" onclick="edit('+index+')"  >编辑</a>';
+							}
+						}
+				    ]]
+				});
+				
+			});
+		</script>
+		
+	</body>
+</html>

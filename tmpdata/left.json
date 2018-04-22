@@ -1,0 +1,55 @@
+[
+{"id":1,"text":"系统管理","iconCls":"fa fa-windows"    
+	,"children":[
+		{"id":11,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"tmpdata/home.html"}},
+		{"id":12,"text":"权限管理","iconCls":"fa fa-circle-thin"},
+		{"id":13,"text":"index.html","iconCls":"fa fa-circle-thin"},
+		{"id":14,"text":"about.html","iconCls":"fa fa-circle-thin"},
+		{"id":15,"text":"welcome.html","iconCls":"fa fa-circle-thin"}]
+},
+
+{"id":2,"text":"第三方","iconCls":"fa fa-cube","state":"closed","children":[
+		{"id":21,"text":"优酷","iconCls":"fa fa-camera-retro"},
+		{"id":22,"text":"百度","iconCls":"fa fa-circle-thin"}]
+},
+
+{"id":3,"text":"用户管理","iconCls":"fa fa-database","state":"closed","children":[
+		{"id":31,"text":"用户信息","iconCls":"fa fa-user","attributes":{"url":"tmpdata/list.html"}},
+		{"id":32,"text":"百度","iconCls":"fa fa-folder-open-o"}]
+},
+
+{"id":4,"text":"测试","iconCls":"fa fa-paper-plane-o","state":"closed","children":[
+		{"id":41,"text":"相机","iconCls":"fa fa-camera-retro"},
+		{"id":42,"text":"百度","children":[
+			{"id":421,"text":"优酷","iconCls":"fa fa-camera-retro"},
+			{"id":422,"text":"百度","iconCls":"fa fa-circle-thin"}]
+		},
+		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":52,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":53,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":54,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":55,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":56,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":57,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":58,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":59,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":61,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":62,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":63,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":64,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":65,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":67,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":68,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":70,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":71,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":72,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":73,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":74,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":75,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":76,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":77,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}}
+		
+		]
+}
+
+]

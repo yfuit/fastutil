@@ -1,0 +1,66 @@
+/** 左数样式 */
+.tree-node{
+	/*font-weight: bold;*/
+	height: 32px;/*每棵树的高度*/
+}
+.tree-title{
+	font-size:16px;/** 目录的字体大小 */
+	line-height: 32px;
+}
+
+
+.tree-hit {
+	margin-right: 4px;/** 打开关闭按钮离图标太近*/
+}
+
+.tree-icon{
+	 height: 32px;
+}
+/** 目录打开关闭操作图标 */
+.tree-expanded {
+	display: inline-block;
+    width: 16px;
+    height: 30px;
+    vertical-align: top;
+    overflow: hidden;
+    background: url(../../easyui/themes/metro/images/tree_icons.png) no-repeat -18px 7px;
+}
+.tree-collapsed {
+    background: url(../../easyui/themes/metro/images/tree_icons.png) no-repeat 0px 7px;
+    display: inline-block;
+    width: 16px;
+    height: 30px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+/** 下面将默认叶子和数删除 全部用奥森图标 */
+/** 目录图标*/
+.tree-folder{
+	width: 1;/*display: none;*/
+	background:inherit;
+	/*background: url(../easyui/themes/metro/images/tree_icons_null.png) no-repeat -208px 0;*/
+}
+
+/*.tree-folder:before { content: "\f07b"; line-height: 32px;}  不加默认*/
+.tree-folder-open{
+	width: 1;/*display: none;*/
+	background:inherit;
+	/*background: url(../easyui/themes/metro/images/tree_icons_null.png) no-repeat -224px 0;*/
+}
+/*.tree-folder-open:before {content: "\f115";line-height: 32px;}*/
+/** 叶子图标*/
+.tree-file{
+	width: 1;/*display: none;*/
+	background:inherit;
+	/*background: url(../easyui/themes/metro/images/tree_icons_null.png) no-repeat -240px 0;*/
+	/*background: url(../easyui/themes/metro/images/tree_icons.png) no-repeat -240px 0;*/
+}
+/*.tree-file:before{content:"\f1db";line-height: 32px;}*/
+
+.tree-folder:before { line-height: 32px;}
+.tree-file:before { line-height: 32px;}
+
+.easyui-tabs iframe{
+	border: 0;width:100%;height: 100%;margin-bottom:-3px;
+}
