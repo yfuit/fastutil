@@ -69,16 +69,38 @@
 	  	sCode:'空格{\t},>{&gt;},<{&lt;},换号{\n}'
 	  },
 
-	  watch:{
+
+	  computed:{
+	  	sVal:function(){
+	  		if(this.sTmp =='' ||  this.sList==''){
+	  			return;
+	  		}
+	  		let content = '';
+	  		let slistAy = this.sList.split('\n');
+	  		for(let oneline in slistAy){
+	  		
+	  			let simpleOne = slistAy[oneline].split('\t');
+	  			
+	  			let tmp  = this.sTmp;
+	  			for (let i = simpleOne.length - 1; i >= 0; i--) {
+	  				tmp = tmp.replace(new RegExp('\\{'+i+'\\}','g'),simpleOne[i]);
+	  			}
+
+	  			content = content + tmp + '\n';
+	  		}
+	  		this.sVal = content;
+	  	}
+	  }
+	 /* watch:{
 		sTmp:function(){
 			this.sTobe();
 		},
 		sList:function(){
 			this.sTobe();
 		}
-	  },
+	  },*/
 
-	  methods:{
+	 /* methods:{
 	  	sTobe:function(){
 	  		//var a = this.sTmp.split(/{\d}/);
 
@@ -101,7 +123,7 @@
 	  		this.sVal = content;
 			//this.sVal = this.sTmp + this.sList;
 	  	}
-	  }
+	  }*/
 
     });
 
