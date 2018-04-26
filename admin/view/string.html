@@ -65,7 +65,7 @@
 	  data: {
 	  	sTmp:'',
 	  	sList:'',
-	  	sVal:'',
+	  	//sVal:'',
 	  	sCode:'空格{\t},>{&gt;},<{&lt;},换号{\n}'
 	  },
 
@@ -73,7 +73,7 @@
 	  computed:{
 	  	sVal:function(){
 	  		if(this.sTmp =='' ||  this.sList==''){
-	  			return;
+	  			return '';
 	  		}
 	  		let content = '';
 	  		let slistAy = this.sList.split('\n');
