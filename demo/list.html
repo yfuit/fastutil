@@ -2,10 +2,12 @@
 <html>
 <head>
 	<title>列表</title>
+	<link rel="stylesheet" href="../dist/css/layui.css" />
 </head>
 <body>
 
-<table class="layui-table" lay-filter="listData">
+<table class="layui-table" lay-filter="listData"
+	lay-data="{height: 313, url:'table/demo1.json'}" >
 	<tr>
       	<th lay-data="{field:'id', width:80}">ID</th>
       	<th lay-data="{field:'username', width:80}">用户名</th>
@@ -13,4 +15,17 @@
 </table>
 
 </body>
+<script src="../dist/layui.js"></script>
+<script type="text/javascript">
+	
+layui.use('table', function(){
+  	var table = layui.table;
+
+	table.render({elem: '#listData'});
+
+
+
+});
+
+</script>
 </html>

@@ -127,6 +127,12 @@ var $;
 layui.use('element', function(){
    element = layui.element;
    $ = layui.$;
+
+
+  element.on('tabDelete(demo)', function(data){
+     tablist[$(this).parent().attr('lay-id')] = null;
+  });
+
 });
 
 var tablist={};
@@ -147,6 +153,8 @@ function openview(src){
     element.tabChange('demo',id)
   }
 }
+
+
 
 
 </script>
