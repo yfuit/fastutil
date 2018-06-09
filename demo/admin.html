@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>layout 后台大布局 - Layui</title>
-<link rel="stylesheet" href="../dist/css/layui.css">
+<link rel="stylesheet" href="../dist/css/layui.css" />
 <style type="text/css">
   .layadmin-iframe {
     position: absolute;
@@ -69,6 +69,7 @@
           <a href="javascript:;">发布商品</a>
           <dl class="layui-nav-child">
              <dd><a href="http://www.baidu.com" onclick="openview(this);return false;" id="223" >列表一</span></a></dd>
+             <dd><a href="list.html" onclick="openview(this);return false;" id="226" >用户管理</span></a></dd>
              
              <li class="layui-nav-item">
                  <a href="javascript:;">发布商品</a>
@@ -118,13 +119,14 @@
   </div>
 </div>
 <script src="../dist/layui.js"></script>
-<script src="../jquery.min.js"></script>
 <script>
 var element;
+var $;
 
 //JavaScript代码区域
 layui.use('element', function(){
    element = layui.element;
+   $ = layui.$;
 });
 
 var tablist={};
