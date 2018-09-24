@@ -1,9 +1,150 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<head>
+	<meta charset="utf-8" />
+	<title>列表</title>
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<link rel="stylesheet" href="../dist/css/layui.css" />
+</head>
+<body>
+	
+<form class="layui-form layui-form-pane search-form" action="">
+	    <div class="layui-inline">
+	      <label class="layui-form-label">日期选择</label>
+	      <div class="layui-input-block">
+	        <input type="text" name="date" id="date1" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+	    
+	    <div class="layui-inline">
+	      <label class="layui-form-label">行内表单</label>
+	      <div class="layui-input-inline">
+	        <input type="text" name="number" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+</form>
+	
+<hr class="layui-bg-blue" /><!-- -------------------------------------------------------------	-->
+<div class="layui-row">
+	<div class="layui-btn-group common-opration-btn" >
+		<button class="layui-btn " data-type="searchDataButton">查询</button>
+	   	<button class="layui-btn layui-btn-primary" data-type="resetDataButton" >重置</button>
+	   	<button class="layui-btn layui-btn-primary" data-type="chekedSearchFormButton" >隐藏</button>
+	</div>
+</div>
+
+<table lay-filter="listData" class="layui-table" 
+	lay-data="{id:'tableData',url:'table/demo1.json',loading:true,page:true, cellMinWidth: 80,height: 'full-200',limit:30}" >
+	<thead>
+		<tr>
+			<th lay-data="{field:'id',style:'color:blue;',fixed:'left'}">ID</th>
+			<th lay-data="{type:'checkbox'}">选择</th>
+	      	
+	      	<th lay-data="{field:'username', sort: true, edit:'text'}">用户名</th>
+	      	<th lay-data="{field:'city',templet:'#templetCity' }">城市</th>
+	      	<th lay-data="{field:'ip' }">地址</th>
+	      	<th lay-data="{minWith:'110', templet:'#checkboxTpl',fixed:'right'}">锁定</th>
+	      	<th lay-data="{minWith:'110', templet:'#checkboxEdit',fixed:'right'}">操作</th>
+		</tr>    
+	</thead>
+</table>
+<script type="text/html" id="templetCity">
+  {{#  if(d.city === '江苏南京'){ }}
+    <span style="color: #F581B1;">{{ d.city }}</span>
+  {{#  } else { }}
+    {{ d.city+"123\naa<br/>bb" }}
+  {{#  } }}
+</script>
+<script type="text/html" id="checkboxTpl">
+  <input type="checkbox" name="lock" value="{{d.id}}" title="锁定" lay-filter="lockDemo" {{ d.id == 10006 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="checkboxEdit">
+	<div class="layui-btn-group">
+	  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+	  <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="edit">编辑</a>
+	  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</div>
+</script>
+<!-- -------------------------------------------------------------	-->
+<script type="text/html" id="editFormTpl">
+<form class="layui-form layui-form-pane edit-form" action="">
+	    <div class="layui-inline">
+	      <label class="layui-form-label">日期选择</label>
+	      <div class="layui-input-block">
+	        <input type="text" name="date" id="date1" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+	    
+	    <div class="layui-inline">
+	      <label class="layui-form-label">行内表单</label>
+	      <div class="layui-input-inline">
+	        <input type="text" name="number" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+</form>
+</script>
+
+</body>
+<script src="../dist/layui.js"></script>
+<script src="common.js"></script>
+<script type="text/javascript">
+
+layui.use('table', function(){
+  	var table = layui.table;
+  	var form = layui.form;
+  	//监听锁定操作
+  	form.on('checkbox(lockDemo)', function(obj){
+    	layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+  	});
+  	
+  	
+  	//监听工具条
+  table.on('tool(listData)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+      layer.confirm('真的删除行么',{icon: 3, title:'提示'},function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+    	
+    	layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+    	,content:'123'
+    	});
+    	
+      layer.alert('编辑行：<br>'+ JSON.stringify(data))
+    }
+  });
+  
+  active = {
+    getCheckData: function(){ //获取选中数据
+      var checkStatus = table.checkStatus('tableData')
+      ,data = checkStatus.data;
+      layer.alert(JSON.stringify(data));
+    }
+    ,getCheckLength: function(){ //获取选中数目
+      var checkStatus = table.checkStatus('tableData')
+      ,data = checkStatus.data;
+      layer.msg('选中了：'+ data.length + ' 个');
+    }
+    ,isAll: function(){ //验证是否全选
+      var checkStatus = table.checkStatus('tableData');
+      layer.msg(checkStatus.isAll ? '全选': '未全选')
+    }
+  };
+  
+  $('.opration-btn .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+  	
+});
+
+</script>
 </html>

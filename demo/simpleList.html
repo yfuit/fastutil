@@ -24,22 +24,33 @@
 	        <input type="text" name="number" autocomplete="off" class="layui-input" />
 	      </div>
 	    </div>
+	    <div class="layui-inline">
+	      <label class="layui-form-label">行内表单</label>
+	      <div class="layui-input-inline">
+	        <input type="text" name="number" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+	   <div class="layui-inline">
+	      <label class="layui-form-label">行内表单</label>
+	      <div class="layui-input-inline">
+	        <input type="text" name="number" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div><div class="layui-inline">
+	      <label class="layui-form-label">行内表单</label>
+	      <div class="layui-input-inline">
+	        <input type="text" name="number" autocomplete="off" class="layui-input" />
+	      </div>
+	    </div>
+	    
+	    <div class="layui-inline common-opration-btn">
+	    	<div class="layui-btn-group " >
+				<button class="layui-btn " type="button" data-type="searchDataButton">查询</button>
+			   	<button class="layui-btn layui-btn-primary" type="button" data-type="resetDataButton" >重置</button>
+			</div>
+	    </div>	
 </form>
 	
 <hr class="layui-bg-blue" /><!-- -------------------------------------------------------------	-->
-<div class="layui-row">
-	<div class="layui-btn-group opration-btn">
-	  <button class="layui-btn layui-btn-normal" data-type="getCheckData">获取选中行数据</button>
-	  <button class="layui-btn layui-btn-normal" data-type="getCheckLength">获取选中数目</button>
-	  <button class="layui-btn layui-btn-normal" data-type="isAll">验证是否全选</button>
-	</div>
-	
-	<div class="layui-btn-group common-opration-btn" >
-		<button class="layui-btn " data-type="searchDataButton">查询</button>
-	   	<button class="layui-btn layui-btn-primary" data-type="resetDataButton" >重置</button>
-	   	<button class="layui-btn layui-btn-primary" data-type="chekedSearchFormButton" >隐藏</button>
-	</div>
-</div>
 
 <table lay-filter="listData" class="layui-table" 
 	lay-data="{id:'tableData',url:'table/demo1.json',loading:true,page:true, cellMinWidth: 80,height: 'full-200',limit:30}" >
