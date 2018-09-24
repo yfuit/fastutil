@@ -1,1 +1,1 @@
-console.log("USCCESS");
+console.log("SUSCCESS");
