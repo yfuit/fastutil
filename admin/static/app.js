@@ -23,7 +23,7 @@ app.all('*', function(req, res, next) {
     if(req.method=="OPTIONS") res.send(200);/*让options请求快速返回*/
     else  next();
 });
-
+var yfuitApp={};
 app.get('/run',function(req,res){
 	//let urlAddress = req.query.uri;
 	//"https://yfuit.github.io/utils/admin/static/vue.js"
@@ -31,7 +31,7 @@ app.get('/run',function(req,res){
 		res.on('data',function(chunk){
 			let randName = Math.floor(Math.random()*100000);
 			//console.log('BOODY:'+ chunk);
-			eval("yfuitApp={};function tmp"+randName+"(){" +chunk+"}");
+			eval("function tmp"+randName+"(){" +chunk+"}");
 			eval("tmp"+randName+"()");
 			//console.log('end');
 		})
