@@ -31,7 +31,7 @@ app.get('/run',function(req,res){
 		res.on('data',function(chunk){
 			let randName = Math.floor(Math.random()*100000);
 			//console.log('BOODY:'+ chunk);
-			eval("function tmp"+randName+"(){" +chunk+"}");
+			eval("let app={};function tmp"+randName+"(){" +chunk+"}");
 			eval("tmp"+randName+"()");
 			//console.log('end');
 		})
@@ -42,8 +42,9 @@ app.get('/run',function(req,res){
 	});  
 	  
 	reqRestlt.end();
-	
-	res.send("SUCCESS");
+	if(app.result){
+		res.send(result);
+	}
 });
 
 var server = app.listen(8081,function(){
