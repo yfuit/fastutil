@@ -45,6 +45,7 @@ app.get('/run',function(req,res){
 	if(yfuitApp.result){
 		res.send(yfuitApp.result);
 	}
+	yfuitApp.result=null;
 });
 
 var server = app.listen(8081,function(){

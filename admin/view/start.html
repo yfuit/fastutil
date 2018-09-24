@@ -4,17 +4,16 @@
 		<meta charset="utf-8" />
 		<title></title>
 		<script type="text/javascript" src="../static/easyui/jquery.min.js" ></script>
+		<script type="text/javascript" src="../static/remote.js" ></script>
 	</head>
 	<body>
 		<button onclick="go()">GO</button>
 	</body>
 	<script>
 		function go(){ 
-			params ={};
-			params.uri = "https://yfuit.github.io/utils/admin/run/doit.js";
-			$.get("http://localhost:8081/run",params,function(data){
-				alert(data);
-			});
+			$.py("app.js",funciton(data){
+				alert(data)
+			})
 		}
 	</script>
 		
