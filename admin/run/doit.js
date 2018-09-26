@@ -1,2 +1,2 @@
 console.log("SUSCCESS");
-yfuitApp.result="yuan";
+yfuitApp.result="py";
