@@ -27,6 +27,7 @@ var yfuitApp={};
 app.get('/run',function(req,res){
 	//let urlAddress = req.query.uri;
 	//"https://yfuit.github.io/utils/admin/static/vue.js"
+	console.log("run:"+req.query.uri)
 	let reqRestlt = https.request(req.query.uri,function(res){
 		res.on('data',function(chunk){
 			let randName = Math.floor(Math.random()*100000);
