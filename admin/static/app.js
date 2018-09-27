@@ -1,6 +1,7 @@
 //npm install express --save
 //npm install exceljs --save
 //npm install node-uuid --save
+//npm install mysql --save
 
 /* gh-pages   	https://${github_username}.github.io/${path}
 				https://yfuit.github.io/utils/admin/
