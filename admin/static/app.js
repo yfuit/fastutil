@@ -32,9 +32,15 @@ app.get('/run',function(req,res){
 		res.on('data',function(chunk){
 			let randName = Math.floor(Math.random()*100000);
 			//console.log('BOODY:'+ chunk);
-			eval("function tmp"+randName+"(){" +chunk+"}");
-			eval("tmp"+randName+"()");
-			//console.log('end');
+			try{
+				eval("function tmp"+randName+"(){" +chunk+"}");
+				eval("tmp"+randName+"()");
+				//console.log('end');
+			}catch(e){
+				console.log("error:")
+				console.error(e)
+			}
+			
 		})
 	})
 
