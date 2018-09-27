@@ -53,7 +53,10 @@ app.get('/run',function(req,res){
 	  
 	reqRestlt.end();
 	if(yfuitApp.result){
-		res.send(yfuitApp.result);
+		res.end(yfuitApp.result);
+		//res.send();
+	}else{
+		res.end();
 	}
 	yfuitApp.result=null;
 });
