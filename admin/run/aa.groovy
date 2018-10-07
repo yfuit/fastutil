@@ -5,3 +5,6 @@ class TestScript {
         return "Hello " + str + ", I'm first!";
     }
 }
+
+request = new HashMap();
+request.put("data","ccc");
