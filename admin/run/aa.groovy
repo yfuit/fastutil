@@ -1,3 +1,7 @@
+
+if(null != name){
+    println("name:"+name);
+}
 println(123);
 
 class TestScript {
