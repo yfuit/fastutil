@@ -1,8 +1,6 @@
 
-if(null != name){
-    println("name:"+name);
-}
-println(123);
+
+println(Object.params);
 
 class TestScript {
     static String output(def str) {
@@ -13,4 +11,5 @@ class TestScript {
 request = new HashMap();
 request.put("data","ccc");
 println(456111);
+Object.params="wwww";
 
