@@ -7,13 +7,44 @@
 		<script type="text/javascript" src="../static/remote.js" ></script>
 	</head>
 	<body>
-		<button onclick="go()">GO</button>
+		<textarea id="contval" placeholder="转义文本类内容"></textarea><br>
+		<button onclick="transferLanguage()">GO</button><br>
+		<table id="tables"></table>
+		<br>
+
 	</body>
 	<script>
-		function go(){ 
-			$.py("mysqlTemplate.js",function(data){
-				alert(data)
+		var tmp =  "String tmp = '"+$('#contval').val()+"';";
+
+		var scripT = tmp + `
+
+			String[] charts = ["GBK","UTF-8","ISO-8859-1"];
+
+			List list = new ArrayList<Map>();
+			for(String chart : charts){
+				try {
+					Map map = new HashMap<String,String>();
+					map.put("chart",chart);
+					map.put("val",new String(tmp.getBytes(chart)));
+					list.add(map);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			//println("list:"+list)
+			com.CTX.result = list;
+		`;
+
+		function transferLanguage(){
+        alert(    $('#contval').val())
+alert(scripT)
+		    $.get("http://localhost:8083/grun",{gstr:scripT},function(data){
+		        $('#tables').html('');
+		        for(var i in data){
+                    $('#tables').append("<tr><td>"+data[i]['chart'] +"</td><td>"+data[i]['val']+"</td></tr>")
+				}
 			})
+
 		}
 	</script>
 		
