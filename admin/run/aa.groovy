@@ -1,6 +1,6 @@
 
 
-println(Object.params);
+println("CTX.param:"+CTX.param);
 
 class TestScript {
     static String output(def str) {
@@ -11,5 +11,5 @@ class TestScript {
 request = new HashMap();
 request.put("data","ccc");
 println(456111);
-Object.params="wwww";
+CTX.param=123;
 
