@@ -14,7 +14,7 @@
 
 	</body>
 	<script>
-		var tmp =  "String tmp = '"+$('#contval').val()+"';";
+		var tmp =  "String tmp = '"+encodeURIComponent($('#contval').val())+"';";
 
 		var scripT = tmp + `
 
