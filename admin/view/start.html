@@ -33,7 +33,7 @@
 		`;
 
 		function transferLanguage(){
-      		    let tmp =  "String tmp = '"+encodeURIComponent($('#contval').val())+"';";
+      		    let tmp =  "String tmp =  URLDecoder.decode(\""+encodeURIComponent($('#contval').val())+"\",\"UTF-8\");";
 		    $.get("http://localhost:8083/grun",{gstr:tmp + scripT},function(data){
 		        $('#tables').html('');
 		        for(var i in data){
