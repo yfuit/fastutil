@@ -37,9 +37,9 @@
 		    $.get("http://localhost:8083/grun",{gstr:tmp + scripT},function(data){
 		        $('#tables').html('');
 		        for(var i in data){
-                    $('#tables').append("<tr><td>"+data[i]['chart'] +"</td><td>"+data[i]['val']+"</td></tr>")
-				}
-			})
+                    		$('#tables').append("<tr><td>"+data[i]['chart'] +"</td><td>"+data[i]['val']+"</td></tr>")
+			}
+		    })
 
 		}
 	</script>
