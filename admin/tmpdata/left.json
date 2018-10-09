@@ -1,10 +1,10 @@
 [
-{"id":100,"text":"公共组件","iconCls":"fa fa-html5",
+{"id":100,"text":"FastTool","iconCls":"fa fa-html5",
 	"children":[
-		{"id":106,"text":"FastTool","iconCls":"fa fa-circle-thin","attributes":{"url":"view/start.html"}},
-		{"id":101,"text":"WEB URL","iconCls":"fa fa-circle-thin","attributes":{"url":"view/weburl.html"}},
-		{"id":102,"text":"快捷字符","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
-		{"id":103,"text":"快捷BATIS","iconCls":"fa fa-circle-thin"}
+		{"id":106,"text":"CommonTool","iconCls":"fa fa-circle-thin","attributes":{"url":"view/start.html"}},
+		{"id":101,"text":"WebUri","iconCls":"fa fa-circle-thin","attributes":{"url":"view/weburl.html"}},
+		{"id":102,"text":"FastStr","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
+		{"id":103,"text":"SQLBean","iconCls":"fa fa-circle-thin","attributes":{"url":"view/FastTool/SQLBean.html"}}
 	]
 },
 
