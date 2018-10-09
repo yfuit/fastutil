@@ -10,42 +10,28 @@
 	</head>
 	<body>
 
-	<form class="layui-form layui-form-pane" action="" style="margin:10px;">
-		<div class="layui-form-item">
-			<div class="layui-form-item layui-form-text layui-col-xs3">
-				<label class="layui-form-label">转换乱码字符 <button onclick="transferLanguage();return false;" class="layui-btn layui-btn-sm" style="float: right;margin-top: -5px;" >转&nbsp;&nbsp;码</button> </label>
-				<div class="layui-input-block">
-					<textarea id="contval" placeholder="请输入转换的文本内容" class="layui-textarea"></textarea>
+		<form class="layui-form layui-form-pane" action="" style="margin:10px;">
+			<div class="layui-form-item">
+				<div class="layui-form-item layui-form-text layui-col-xs3">
+					<label class="layui-form-label">转换乱码字符 <button onclick="transferLanguage();return false;" class="layui-btn layui-btn-sm" style="float: right;margin-top: -5px;" >转&nbsp;&nbsp;码</button> </label>
+					<div class="layui-input-block">
+						<textarea id="contval" placeholder="请输入转换的文本内容" class="layui-textarea"></textarea>
+					</div>
 				</div>
 			</div>
+		</form>
+		<div class="layui-hide" >
+			<table class="layui-table" id="tablelanguage" >
+				<colgroup><col width="150"><col></colgroup>
+				<thead><tr><th>编码格式</th><th>编码内容</th></tr></thead>
+				<tbody id="tableContent"></tbody>
+			</table>
 		</div>
-	</form>
-	<br>
-
-	<div class="layui-hide" >
-
-		<table class="layui-table" id="tablelanguage" >
-			<colgroup>
-				<col width="150">
-				<col  >
-			</colgroup>
-			<thead>
-			<tr>
-				<th>编码格式</th>
-				<th>编码内容</th>
-			</tr>
-			</thead>
-			<tbody id="tableContent">
-
-			</tbody>
-		</table>
-	</div>
 
 	</body>
 	<script>
 		var scripT =  `
 			String[] charts = ["GBK","UTF-8","ISO-8859-1"];
-
 			List list = new ArrayList<Map>();
 			for(String chart : charts){
 				try {
@@ -62,13 +48,12 @@
 		`;
 
 		function transferLanguage(){
-      		    let tmp =  "String tmp =  URLDecoder.decode(\""+encodeURIComponent($('#contval').val())+"\",\"UTF-8\");";
+			let tmp =  "String tmp =  URLDecoder.decode(\""+encodeURIComponent($('#contval').val())+"\",\"UTF-8\");";
 		    $.get("http://localhost:8083/grun",{gstr:tmp + scripT},function(data){
-		        $('#tables').html('');
+		        $('#tableContent').html('');
 		        for(var i in data){
 					$('#tableContent').append("<tr><td>"+data[i]['chart'] +"</td><td>"+data[i]['val']+"</td></tr>")
 				}
-
                 layer.open({
                     type: 1,
 					title:'转码结果',
@@ -76,9 +61,7 @@
                     area: ['630px', '360px'], //宽高
                     content:$('#tablelanguage').parent().clone().html()
                 });
-
 		    })
-
 		}
 	</script>
 		
