@@ -14,10 +14,7 @@
 
 	</body>
 	<script>
-		var tmp =  "String tmp = '"+encodeURIComponent($('#contval').val())+"';";
-
-		var scripT = tmp + `
-
+		var scripT =  `
 			String[] charts = ["GBK","UTF-8","ISO-8859-1"];
 
 			List list = new ArrayList<Map>();
@@ -36,9 +33,8 @@
 		`;
 
 		function transferLanguage(){
-        alert(    tmp)
-alert(scripT)
-		    $.get("http://localhost:8083/grun",{gstr:scripT},function(data){
+      		    let tmp =  "String tmp = '"+encodeURIComponent($('#contval').val())+"';";
+		    $.get("http://localhost:8083/grun",{gstr:tmp + scripT},function(data){
 		        $('#tables').html('');
 		        for(var i in data){
                     $('#tables').append("<tr><td>"+data[i]['chart'] +"</td><td>"+data[i]['val']+"</td></tr>")
