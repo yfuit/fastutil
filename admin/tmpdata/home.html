@@ -22,12 +22,16 @@
 </body>
 
 <script>
+    layer.load(2);
     $.get("http://localhost:8083/grun",{gstr:"println(\"connected.\")"})
         .done(function(){
 
         })
         .fail(function () {
             layer.msg('未开启服务');
+        })
+        .always(function () {
+            layer.closeAll('loading');
         })
   
 
