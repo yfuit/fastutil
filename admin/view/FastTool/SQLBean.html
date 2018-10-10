@@ -3,8 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <title>SQLBean</title>
+    <script type="text/javascript" src="../../static/easyui/jquery.min.js" ></script>
+    <script type="text/javascript" src="../../static/remote.js" ></script>
+    <script type="text/javascript" src="../../static/layui/layui.all.js" ></script>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css"  media="all">
 </head>
 <body>
-SQLBean
+    <div class="layui-row"><div class="layui-col-xs6">
+
+    <form class="layui-form layui-form-pane" action="" style="padding: 10px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="uri" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="password" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">包名</label>
+            <div class="layui-input-block">
+                <input type="text" name="uri" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">目录地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="uri" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text layui-hide" >
+            <label class="layui-form-label">文本域</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">&nbsp;</div><div class="layui-form-item">&nbsp;</div>
+        <div class="layui-form-item">
+            <button onclick="initObjectStr();return false;" class="layui-btn" >初始化</button>
+
+            <button class="layui-btn" lay-submit="" lay-filter="demo2">表格信息</button>
+
+            <button class="layui-btn" lay-submit="" lay-filter="demo2"
+                    onclick="$('#aaaaa').append('<li>订单管理22</li>')" >全部生成</button>
+        </div>
+    </form>
+
+    </div>
+
+    <div class="layui-col-xs6">
+        <table class="layui-hide" id="tables"></table>
+    </div>
+
+    </div>
+
+
+    <div class="layui-row"></div>
+
+
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title" id="aaaaa">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
+            <div class="layui-tab-item">内容2</div>
+            <div class="layui-tab-item">内容3</div>
+            <div class="layui-tab-item">内容4</div>
+            <div class="layui-tab-item">内容5</div>
+        </div>
+    </div>
+
 </body>
+
+<script type="text/javascript">
+    var initStr = `
+    Object.metaClass.toPO={
+            def target = delegate+"";
+            target =("_"+target).toLowerCase();
+
+            def tmp = "";
+            def toUFlag= false;
+            target.toList().each {
+                if("_".equals(it)){
+                    toUFlag=true;
+                }else{
+                    if(toUFlag){
+                        tmp=tmp.concat(it.toUpperCase());
+                    }else{
+                        tmp=tmp.concat(it);
+                    }
+                    toUFlag=false;
+                }
+
+            }
+            return tmp;
+        }
+        Object.metaClass.toEO={
+            def target = delegate.toPO()+"";
+            target= target[0].toLowerCase()+target[1..target.size()-1]
+            return target;
+        }
+
+    `;
+
+    function initObjectStr() {
+        $.get("http://localhost:8083/grun",{gstr:initStr}).done(function () {  layer.msg("初始化成功"); });
+    }
+
+    layui.use(['form', 'layedit', 'laydate','table'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+        var table = layui.table;
+
+        table.render({
+            elem: '#tables',
+            height:'300px',
+            url:'test.json',
+            cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            cols: [[
+                {field:'id', width:80, title: 'ID',minWidth: 100, sort: true},
+                {field:'username', width:80, title: '用户名'}
+            ]]
+        });
+
+    });
+</script>
+
+
 </html>
