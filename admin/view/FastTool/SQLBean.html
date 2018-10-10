@@ -48,13 +48,27 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">模板</label>
+            <div class="layui-input-block">
+                <select name="interest" lay-filter="seltpl" >
+                    <option value=""></option>
+                    <option value="simple">simple</option>
+                    <option value="1" selected="">阅读</option>
+                    <option value="2">游戏</option>
+                    <option value="3">音乐</option>
+                    <option value="4">旅行</option>
+                </select>
+            </div>
+        </div>
+
         <div class="layui-form-item layui-form-text layui-hide" >
             <label class="layui-form-label">文本域</label>
             <div class="layui-input-block">
                 <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
             </div>
         </div>
-        <div class="layui-form-item">&nbsp;</div><div class="layui-form-item">&nbsp;</div>
+
         <div class="layui-form-item">
             <button onclick="initObjectStr();return false;" class="layui-btn" >初始化</button>
 
@@ -78,14 +92,14 @@
 
 
     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-        <ul class="layui-tab-title" id="aaaaa">
+        <ul class="layui-tab-title" id="tpltitle">
             <li class="layui-this">网站设置</li>
             <li>用户管理</li>
             <li>权限分配</li>
             <li>商品管理</li>
             <li>订单管理</li>
         </ul>
-        <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-content" style="min-height:100px;" id="tplcontent">
             <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
             <div class="layui-tab-item">内容2</div>
             <div class="layui-tab-item">内容3</div>
@@ -93,6 +107,8 @@
             <div class="layui-tab-item">内容5</div>
         </div>
     </div>
+
+
 
 </body>
 
@@ -126,7 +142,6 @@
         }
 
     `;
-
     function initObjectStr() {
         $.get("http://localhost:8083/grun",{gstr:initStr}).done(function () {  layer.msg("初始化成功"); });
     }
@@ -149,7 +164,48 @@
             ]]
         });
 
+        //监听指定开关
+       /* form.on('switch(seltpl)', function(data){
+            alert(data)
+            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+                offset: '6px'
+            });
+            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        });*/
+
+        form.on('select(seltpl)', function(data){
+
+            if(data.value == 'simple'){
+
+
+                for(let i in  selTplVal[data.value]){
+                    $('#tpltitle').append(" <li>"+selTplVal[data.value][i]+"</li>");
+
+                    $.get(data.value+"/"+selTplVal[data.value][i]).done(function (data) {
+                        let tmp = $("<textarea style='height: 400px;width:100%;'></textarea>");
+                        tmp.val(data);
+                        let mk = $("<div class=\"layui-tab-item\"></div>");
+                        mk.append(tmp);
+                        $('#tplcontent').append(mk);
+                    })
+
+
+                }
+
+            }
+
+
+        });
+        form.render();
     });
+
+
+    var selTplVal = {
+        simple:[ 'Controller.java','Service.java' ],
+        hb:['Vim','COASS'],
+    }
+
+
 </script>
 
 
