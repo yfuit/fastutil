@@ -4,6 +4,22 @@ $.py=function(js,call){
 	$.get("http://localhost:8081/run",params,call).error(function() { alert("网络异常"); });
 }
 
+function getData(uri){
+	let valTemp="";
+    $.ajax({
+        type: "get",
+        url: uri,
+        cache:false,
+        async:false,
+        dataType:"text",
+        success: function(data){
+            valTemp = data;
+        }
+    });
+    return valTemp;
+}
+
+
 //guri 执行url
 //gstr
 runUrl="http://localhost:8083/grun";

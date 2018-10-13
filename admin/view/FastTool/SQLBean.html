@@ -15,7 +15,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">地址</label>
                 <div class="layui-input-block">
-                    <input type="text" name="uri" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    <input type="text" name="url"
+                           value="jdbc:mysql://rm-bp1sjikw4ju86flv4.mysql.rds.aliyuncs.com:3306/activeplugin?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true"
+                           autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
 
@@ -23,13 +25,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" value="junjie" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">密码</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="password" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="password" value="Junjie8866" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>
@@ -38,14 +40,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">包名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="uri" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    <input type="text" name="package" value="com.yuan" autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">目录地址</label>
                 <div class="layui-input-block">
-                    <input id="srcDir" type="text" name="uri"lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    <input id="srcDir" type="text" name="srcDir" value="D:\\appyuan" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
 
@@ -60,9 +62,9 @@
             </div>
 
             <div class="layui-form-item layui-form-text layui-hide" >
-                <label class="layui-form-label">文本域</label>
+                <label class="layui-form-label">备注</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <textarea placeholder="请输入内容" name="remark" class="layui-textarea"></textarea>
                 </div>
             </div>
 
@@ -111,37 +113,11 @@
 <script type="text/javascript">
     $.ajaxSetup({async : false});
 
-    var initStr = `
-    Object.metaClass.toPO={
-            def target = delegate+"";
-            target =("_"+target).toLowerCase();
 
-            def tmp = "";
-            def toUFlag= false;
-            target.toList().each {
-                if("_".equals(it)){
-                    toUFlag=true;
-                }else{
-                    if(toUFlag){
-                        tmp=tmp.concat(it.toUpperCase());
-                    }else{
-                        tmp=tmp.concat(it);
-                    }
-                    toUFlag=false;
-                }
-
-            }
-            return tmp;
-        }
-        Object.metaClass.toEO={
-            def target = delegate.toPO()+"";
-            target= target[0].toLowerCase()+target[1..target.size()-1]
-            return target;
-        }
-
-    `;
     function initObjectStr() {
-        $.get(runUrl,{gstr:initStr}).done(function () {  layer.msg("初始化成功"); });
+
+        alert("OK")
+
     }
 
     var selTplVal = {
@@ -162,61 +138,29 @@
         }
     }
 
-
     function generateFile(){
 
+        var objInfo = ';def sqlMap = [:];'
+        +'sqlMap.url = "' + $('[name=url]').val()+ '";'
+        +'sqlMap.username = "' + $('[name=username]').val()+ '";'
+        +'sqlMap.password = "' + $('[name=password]').val()+ '";'
+        +'sqlMap.package = "' + $('[name=package]').val()+ '";'
+        +'sqlMap.packagePath = "' + $('[name=package]').val().replace(/\./g,'\\\\')+ '";'
 
-        var srcDirStr= `def srcDir = "\`+$('#srcDir').val()+\`";
+        +'sqlMap.srcDir = "' + $('[name=srcDir]').val()+ '";'
+        +'sqlMap.remark = "' + $('[name=remark]').val()+ '";'
 
+        +'sqlMap.tableSchema = "activeplugin";'
+        +'sqlMap.tableName = "f_activity";  println(sqlMap);';
 
-
-            `;
-
-        var generateStr =srcDirStr + `
-       File filed =  new File("\${srcDir}");
-       filed.mkdirs();
-       File file =  new File("\${srcDir}\${File.separator}345.txt");
-       file.createNewFile();
-       com.CTX.result='OK';
-        `
-        generateStr=generateStr.replace("\\","\\\\");
-
-
-        generateStr=`
-        org.springframework.jdbc.core.JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
-
-        org.springframework.jdbc.datasource.DriverManagerDataSource source = new org.springframework.jdbc.datasource.DriverManagerDataSource();
-        source.setDriverClassName("com.mysql.jdbc.Driver");
-        source.setUrl("jdbc:mysql://rm-bp1sjikw4ju86flv4.mysql.rds.aliyuncs.com:3306/activeplugin?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true");
-        source.setUsername("junjie");
-        source.setPassword("Junjie8866");
-        jdbcTemplate.setDataSource(source);
-
-        List<Map<String, Object>> list = jdbcTemplate.queryForList("select * from f_activity;");
-
-        System.out.println("list:"+list);
-
-        Map<String,Object> map = [:];
-        def tableName="f_activity";
-        map.put("tableName",tableName);
-
-        String sql = "select * from information_schema.columns" +
-                " where table_schema='activeplugin' and table_name = 'f_activity'";
-        map.put("columns",jdbcTemplate.queryForList(sql));
+        var generateStr = getData("common/StringUtil.groovy")
+            + objInfo
+            + getData("common/JdbcTemplate.groovy")
+            + getData("simple/Tmm.java")
+            + getData("common/mkfile.groovy");
 
 
-        sql = "select * from information_schema.tables " +
-                "where table_schema='activeplugin' and table_name='f_activity'";
-        map.put("table",jdbcTemplate.queryForMap(sql));
-
-        System.out.println("map:"+map);
-
-        `;
-
-        /*generateStr = ` org.springframework.jdbc.core.JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
-
-          println(jdbcTemplate)
-          `;*/
+        console.log(generateStr)
         $.get(runUrl,{gstr: generateStr},function(data){
 
             alert(data);
