@@ -1,4 +1,3 @@
-;
 org.springframework.jdbc.core.JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
 
 org.springframework.jdbc.datasource.DriverManagerDataSource source = new org.springframework.jdbc.datasource.DriverManagerDataSource();
@@ -7,7 +6,6 @@ source.setUrl("${sqlMap.url}");
 source.setUsername("${sqlMap.username}");
 source.setPassword("${sqlMap.password}");
 jdbcTemplate.setDataSource(source);
-
 
 sqlMap.put("columns",jdbcTemplate.queryForList(
         "select * from information_schema.columns" +
