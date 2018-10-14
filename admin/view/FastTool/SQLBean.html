@@ -140,8 +140,6 @@
         }
     }
 
-
-
     function selTable() {
         initObjectStr();
         var tablesql =`
@@ -210,19 +208,40 @@
             });
 
         })
-        alert("OK");
+        console.log("SUCCESS："+tableName);
     }
 
     function generateFile(tableName){
+        if($('[name=contentTpl]').size()==0){
+            alert("没有选择模板");
+            return;
+        }
+
         initObjectStr();
-        var objInfo = ';def sqlMap = com.CTX.param;sqlMap.tableName = "'+tableName+'";';
-        var generateStr = //getData("common/StringUtil.groovy")  + objInfo
-            objInfo + getData("common/JdbcTemplate.groovy")
-            + getData("simple/Tmm.java")
-            + getData("common/mkfile.groovy");
-        //console.log(generateStr)
-        $.get(runUrl,{gstr: generateStr},function(data){
-            console.log("生成："+tableName);
+
+        var strListTable = `
+        def sqlMap = com.CTX.param;
+
+        org.springframework.jdbc.core.JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
+        org.springframework.jdbc.datasource.DriverManagerDataSource source = new org.springframework.jdbc.datasource.DriverManagerDataSource();
+        source.setDriverClassName("com.mysql.jdbc.Driver");
+        source.setUrl("\${sqlMap.url}");
+        source.setUsername("\${sqlMap.username}");
+        source.setPassword("\${sqlMap.password}");
+        jdbcTemplate.setDataSource(source);
+
+        def listMap = jdbcTemplate.queryForList(
+        "select * from information_schema.tables " +
+                "where table_schema='\${sqlMap.tableSchema}' ");
+          com.CTX.result = listMap;
+
+        `;
+        $.get(runUrl,{gstr: strListTable},function(data){
+
+            $(data).each(function(){
+
+                generateTable(this.TABLE_NAME);
+            })
         });
     }
 
@@ -232,13 +251,16 @@
         hb:['Vim','COASS'],
     }
     function selTplFuc(value){
+        $('[name=titleTpl]').remove();
+        $('[name=contentTplC]').remove();
+
         for(let i in  selTplVal[value]){
-            $('#tpltitle').append(" <li>"+selTplVal[value][i]+"</li>");
+            $('#tpltitle').append(" <li name='titleTpl'>"+selTplVal[value][i]+"</li>");
 
             $.get(value+"/"+selTplVal[value][i]).done(function (data) {
                 let tmp = $("<textarea style='height: 400px;width:100%;' name='contentTpl' title='"+selTplVal[value][i]+"' ></textarea>");
                 tmp.val(data);
-                let mk = $("<div class=\"layui-tab-item\" ></div>");
+                let mk = $("<div class=\"layui-tab-item\" name='contentTplC' ></div>");
                 mk.append(tmp);
                 $('#tplcontent').append(mk);
             })
