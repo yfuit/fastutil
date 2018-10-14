@@ -1,9 +1,9 @@
 [
 {"id":100,"text":"FastTool","iconCls":"fa fa-html5",
 	"children":[
-		{"id":106,"text":"CommonTool","iconCls":"fa fa-circle-thin","attributes":{"url":"view/start.html"}},
-		{"id":101,"text":"WebUri","iconCls":"fa fa-circle-thin","attributes":{"url":"view/weburl.html"}},
-		{"id":102,"text":"FastStr","iconCls":"fa fa-circle-thin","attributes":{"url":"view/string.html"}},
+		{"id":106,"text":"CommonTool","iconCls":"fa fa-circle-thin","attributes":{"url":"view/FastTool/CommonTool.html"}},
+		{"id":101,"text":"WebUri","iconCls":"fa fa-circle-thin","attributes":{"url":"view/FastTool/WebUrl.html"}},
+		{"id":102,"text":"FastStr","iconCls":"fa fa-circle-thin","attributes":{"url":"view/FastTool/FastStr.html"}},
 		{"id":103,"text":"SQLBean","iconCls":"fa fa-circle-thin","attributes":{"url":"view/FastTool/SQLBean.html"}}
 	]
 },
