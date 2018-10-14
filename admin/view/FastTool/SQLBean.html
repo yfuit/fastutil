@@ -237,12 +237,12 @@
 
         `;
         $.get(runUrl,{gstr: strListTable},function(data){
-
             $(data).each(function(){
-
                 generateTable(this.TABLE_NAME);
             })
         });
+
+        alert("OK");
     }
 
 
