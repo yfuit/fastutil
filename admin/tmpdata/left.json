@@ -8,14 +8,15 @@
 	]
 },
 
-{"id":10,"text":"系统管理","iconCls":"fa fa-windows","state":"closed" 
+{"id":10,"text":"JAVA","iconCls":"fa fa-windows","state":"closed" 
 	,"children":[
-		{"id":11,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"tmpdata/home.html"}},
+		{"id":11,"text":"Eclipse","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/eclipse.html"}},
 		{"id":12,"text":"权限管理","iconCls":"fa fa-circle-thin"},
 		{"id":13,"text":"index.html","iconCls":"fa fa-circle-thin"},
 		{"id":14,"text":"about.html","iconCls":"fa fa-circle-thin"},
 		{"id":15,"text":"welcome.html","iconCls":"fa fa-circle-thin"}
 	]
+
 },
 
 {"id":20,"text":"第三方","iconCls":"fa fa-cube","state":"closed","children":[
