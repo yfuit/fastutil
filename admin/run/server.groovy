@@ -121,7 +121,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
     implementation('org.codehaus.groovy:groovy')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    //runtimeOnly('org.springframework.boot:spring-boot-devtools')
     runtimeOnly('mysql:mysql-connector-java')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
