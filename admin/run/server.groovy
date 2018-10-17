@@ -120,7 +120,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-    implementation('org.codehaus.groovy:groovy')
+    implementation('org.codehaus.groovy:groovy-all')
     //runtimeOnly('org.springframework.boot:spring-boot-devtools')
     //devtool会做些清楚静态变量的操作 可能是代理使静态变量无效  入坑 警告
     runtimeOnly('mysql:mysql-connector-java')
