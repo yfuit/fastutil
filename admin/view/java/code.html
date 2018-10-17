@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mysql</title>
+    <script type="text/javascript" src="../../static/easyui/jquery.min.js" ></script>
+</head>
+<body>
+<textarea id="m1_date" style="width: 800px;" title="时间"></textarea>
+
+</body>
+<script>
+var a=[
+
+`
+String[] objArray = obj.keySet().toArray(new String[0]);
+		Arrays.sort(objArray);
+`,
+
+`
+(new java.text.SimpleDateFormat("yyyyMMddhhmmss")).format(new Date())
+`,
+
+
+]
+for(var i in objArray){
+  let remak  = $("<textarea></textarea>");
+  remak.val(objArray[i])
+  $(body).append(remak)
+}
+</script>
+</html>

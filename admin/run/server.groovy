@@ -93,8 +93,8 @@ buildscript {
         springBootVersion = '2.0.5.RELEASE'
     }
     repositories {
-        mavenCentral()
         mavenLocal()
+        mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -112,16 +112,17 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter-jdbc')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
-    implementation('org.codehaus.groovy:groovy')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    implementation('org.codehaus.groovy:groovy-all')
+    //runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    //devtool会做些清楚静态变量的操作 可能是代理使静态变量无效  入坑 警告
     runtimeOnly('mysql:mysql-connector-java')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
