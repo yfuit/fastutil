@@ -30,10 +30,9 @@
 		]
 },
 
-{"id":40,"text":"测试","iconCls":"fa fa-paper-plane-o","state":"closed","children":[
-		{"id":41,"text":"相机","iconCls":"fa fa-camera-retro"},
-		{"id":42,"text":"百度","children":[
-			{"id":421,"text":"优酷","iconCls":"fa fa-camera-retro"},
+{"id":50,"text":"WORK","iconCls":"fa fa-paper-plane-o","state":"closed","children":[
+		{"id":42,"text":"HB","children":[
+			{"id":421,"text":"TOOL","iconCls":"fa fa-camera-retro","attributes":{"url":"view/WORK/HB/HBWork.html"}},
 			{"id":422,"text":"百度","iconCls":"fa fa-circle-thin"}]
 		},
 		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
