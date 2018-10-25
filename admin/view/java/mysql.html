@@ -6,12 +6,12 @@
 </head>
 <body>
 <p>时间<p>
-<textarea style="width: 800px;height:300px;" title="时间">
+<textarea style="width: 800px;height:80px;" title="时间">
     select DATE_FORMAT(DATE_ADD(now(),INTERVAL -1 DAY),'%Y%m%d%H%i%s'),str_to_date('20080809 08:09:30', '%Y%m%d %h:%i:%s')
 </textarea>
 <br>
 <p>字符串<p>
-<textarea  style="width: 800px;height:300px;" title="时间">
+<textarea  style="width: 800px;height:80px;" title="时间">
 select substr('20181231595857',1,8);  
 SUBSTR(str,pos,len);
 需要注意的是：如果pos为1(而不是0)，表示从第一个位置开始
