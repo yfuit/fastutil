@@ -6,27 +6,27 @@
     <script type="text/javascript" src="../../static/easyui/jquery.min.js" ></script>
 </head>
 <body>
-<textarea id="m1_date" style="width: 800px;" title="时间"></textarea>
+<p>ascii排序</p>
+<textarea  style="width: 800px;height:40px;" >
+	String[] objArray = obj.keySet().toArray(new String[0]);
+		Arrays.sort(objArray);
+</textarea>
+<br/>
+
+<p>JAVA时间格式话</p>
+<textarea  style="width: 800px;height:40px;" >
+	new java.text.SimpleDateFormat("yyyyMMddhhmmss").format(new Date())
+</textarea>
+<br/>
+	
+<p>POST请求</p>
+<textarea style="width: 800px;height:40px;" >
+	curl -H "Content-Type:application/json" -X POST --data '{"val:"123"}' http://url
+</textarea>
+<br/>
 
 </body>
 <script>
-var objArray=[
 
-`
-String[] objArray = obj.keySet().toArray(new String[0]);
-		Arrays.sort(objArray);
-`,
-
-`
-(new java.text.SimpleDateFormat("yyyyMMddhhmmss")).format(new Date())
-`,
-
-
-]
-for(var i in objArray){
-  let remak  = $("<textarea></textarea>");
-  remak.val(objArray[i])
-  $("body").append(remak)
-}
 </script>
 </html>
