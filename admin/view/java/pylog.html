@@ -74,7 +74,7 @@ public class RemontLog {
 
 		@Override
 		public void execute(JobExecutionContext context) throws JobExecutionException {
-			String pytv = new java.text.SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+			String pytv = new java.text.SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			System.out.println("now="+pytv);
 			Point p = MouseInfo.getPointerInfo().getLocation();
 			double px = p.getX();
