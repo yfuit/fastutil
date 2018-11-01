@@ -1,0 +1,97 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>SQLBean</title>
+    <script type="text/javascript" src="../../../static/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../static/remote.js"></script>
+    <script type="text/javascript" src="../../../static/layui/layui.all.js"></script><link id="layuicss-laydate" rel="stylesheet" href="https://yfuit.github.io/utils/admin/static/layui/css/modules/laydate/default/laydate.css?v=5.0.9" media="all"><link id="layuicss-layer" rel="stylesheet" href="https://yfuit.github.io/utils/admin/static/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="https://yfuit.github.io/utils/admin/static/layui/css/modules/code.css" media="all">
+    <link rel="stylesheet" href="../../../static/layui/css/layui.css" media="all">
+<style>
+    textarea{
+        height: 600px;
+        min-width: 400px;
+        border: 0;
+    }
+    td{
+        border: aqua 1px solid;
+    }
+</style></head>
+
+<body>
+<textarea>
+package com.example.demo;
+
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.util.Date;
+
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+public class RemontLog {
+
+	public static JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
+	public static double mx=0;
+	public static double my=0;
+	
+	public static void main(String[] args) throws InterruptedException, JsonProcessingException, SchedulerException {
+		
+        org.springframework.jdbc.datasource.DriverManagerDataSource source = new org.springframework.jdbc.datasource.DriverManagerDataSource();
+        source.setDriverClassName("com.mysql.jdbc.Driver");
+        source.setUrl("jdbc:mysql://192.168.88.133:3306/pengyuan?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true");
+        source.setUsername("root");
+        source.setPassword("Hy77499981");
+        jdbcTemplate.setDataSource(source);
+        
+        
+		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler(); //Scheduler：调度器。所有的调度都是由它控制。
+		
+		// 任务名，任务组，任务执行类
+		JobDetail jobDetail = JobBuilder.newJob(new MyJob().getClass()).withIdentity("jobName", "jobGrounp").build() ;
+		// 触发器 
+		// 触发器名,触发器组 
+		// 创建Trigger对象
+		CronTrigger trigger = (CronTrigger)TriggerBuilder.newTrigger()
+				.withIdentity("triggerName", "triggerGrounp")
+				.startNow()
+				.withSchedule(CronScheduleBuilder.cronSchedule("*/3 * * * * ?"))
+				.build();
+		scheduler.scheduleJob(jobDetail, trigger);
+		scheduler.start();
+	}
+	
+	public static class MyJob implements org.quartz.Job {
+
+		@Override
+		public void execute(JobExecutionContext context) throws JobExecutionException {
+			String pytv = new java.text.SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+			System.out.println("now="+pytv);
+			Point p = MouseInfo.getPointerInfo().getLocation();
+			double px = p.getX();
+			double py = p.getY();
+			if(px == mx && py == my ) {
+				return;
+			}else {
+				mx = px;
+				my = py;
+				System.out.printf("位置%s,%s\n",px,py);
+				jdbcTemplate.update("INSERT INTO pylog(pytype,pytime,pytv) VALUES (1, now(),'"+pytv+"' );");
+			}
+		}
+		
+	}
+}
+</textarea>
+
+</body>
+</html>
