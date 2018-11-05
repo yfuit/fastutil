@@ -9,34 +9,79 @@
 </head>
 <style>
 </style>
-<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="main" style="width: 600px;height:400px;"></div>
+
+<button onclick="getData()">点击</button>
+<div id="bodyView"></div>
 <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
-
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        legend: {
-            data:['销量']
-        },
-        xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        },
-        yAxis: {},
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+	function getData(){
+		var sql = `
+		org.springframework.jdbc.core.JdbcTemplate jdbcTemplate = new org.springframework.jdbc.core.JdbcTemplate();
+		org.springframework.jdbc.datasource.DriverManagerDataSource source = new org.springframework.jdbc.datasource.DriverManagerDataSource();
+		source.setDriverClassName("com.mysql.jdbc.Driver");
+		source.setUrl("jdbc:mysql://192.168.88.133:3306/pengyuan?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true");
+		source.setUsername("root");
+		source.setPassword("Hy77499981");
+		jdbcTemplate.setDataSource(source);
+		com.CTX.bean.db = jdbcTemplate;
+		println("--------------------------------------------------------->1")
+		def sqlstr = new StringBuffer("select a.*,DATE_FORMAT(a.ft,'%Y%m%d%H') ftv,DATE_FORMAT(a.ft,'%Y%m%d') ftd,ifnull(b.cnt,0) cnt from ( select DATE_ADD(now(),INTERVAL -1 HOUR) ft ");
+		for(int i = 1 ;i < 720;i++){
+			sqlstr.append(" union select DATE_ADD(now(),INTERVAL -"+(i+1)+" HOUR) ")
+		}
+		println("--------------------------------------------------------->2")
+		sqlstr.append(" ) a left JOIN ( ");
+		sqlstr.append(" select substr(pytv,1,10) tt,count(1) cnt from pylog where pytv > '20181101000000' and pytv < '20181200000000' GROUP BY substr(pytv,1,10) ORDER BY substr(pytv,1,10) desc ");	
+		sqlstr.append(" ) b	on  DATE_FORMAT(a.ft,'%Y%m%d%H') = b.tt order by DATE_FORMAT(a.ft,'%Y%m%d%H') asc ");
+		
+		println(sqlstr)
+		com.CTX.result = com.CTX.bean.db.queryForList(sqlstr.toString());
+		`;
+		
+		$.get(runUrl,{gstr: sql},function(data){
+		
+			var mapData={};
+			for(var i in data){
+				//datax.push(data[i]["ftv"]);
+				//datay.push(data[i]["cnt"]);
+				if(!mapData[data[i]["ftd"]]) {
+					mapData[data[i]["ftd"]] = {datax:[],datay:[]};
+				}else{
+					mapData[data[i]["ftd"]].datax.push(data[i]["ftv"]);
+					mapData[data[i]["ftd"]].datay.push(data[i]["cnt"]);
+				}
+			}
+		
+			$("#bodyView").html("");
+		
+			for(var vi in mapData){
+				
+				let option = {
+					title: {
+						text:vi
+					},
+					tooltip: {},
+					legend: {
+						data:['销量']
+					},
+					xAxis: {
+						data: mapData[vi].datax
+					},
+					yAxis: {},
+					series: [{
+						//name: '销量',
+						type: 'bar',
+						data: mapData[vi].datay
+					}]
+				};
+				alert(JSON.stringify(option));
+				
+				$("#bodyView").append("<div id='main"+vi+"' style='width:800px;height:100px;'></div><br>")
+				var myChart = echarts.init(document.getElementById('main'+vi));
+				myChart.setOption(option);
+			}
+        });
+	}
+	
 </script>
 
 <body>
