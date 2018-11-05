@@ -35,7 +35,7 @@
 {"id":50,"text":"WORK","iconCls":"fa fa-paper-plane-o","state":"closed","children":[
 		{"id":42,"text":"HB","children":[
 			{"id":421,"text":"TOOL","iconCls":"fa fa-camera-retro","attributes":{"url":"view/WORK/HB/HBWork.html"}},
-			{"id":422,"text":"百度","iconCls":"fa fa-circle-thin"}]
+			{"id":422,"text":"工作报表","iconCls":"fa fa-circle-thin","attributes":{"url":"view/WORK/HB/WORKREPORT.html"}}]
 		},
 		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
 		{"id":52,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
