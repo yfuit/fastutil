@@ -23,12 +23,12 @@
 		source.setPassword("Hy77499981");
 		jdbcTemplate.setDataSource(source);
 		com.CTX.bean.db = jdbcTemplate;
-		println("--------------------------------------------------------->1")
+		
 		def sqlstr = new StringBuffer("select a.*,DATE_FORMAT(a.ft,'%Y%m%d%H') ftv,DATE_FORMAT(a.ft,'%Y%m%d') ftd,ifnull(b.cnt,0) cnt from ( select DATE_ADD(now(),INTERVAL -1 HOUR) ft ");
 		for(int i = 1 ;i < 720;i++){
 			sqlstr.append(" union select DATE_ADD(now(),INTERVAL -"+(i+1)+" HOUR) ")
 		}
-		println("--------------------------------------------------------->2")
+		
 		sqlstr.append(" ) a left JOIN ( ");
 		sqlstr.append(" select substr(pytv,1,10) tt,count(1) cnt from pylog where pytv > '20181101000000' and pytv < '20181200000000' GROUP BY substr(pytv,1,10) ORDER BY substr(pytv,1,10) desc ");	
 		sqlstr.append(" ) b	on  DATE_FORMAT(a.ft,'%Y%m%d%H') = b.tt order by DATE_FORMAT(a.ft,'%Y%m%d%H') asc ");
@@ -73,7 +73,7 @@
 						data: mapData[vi].datay
 					}]
 				};
-				alert(JSON.stringify(option));
+				//alert(JSON.stringify(option));
 				
 				$("#bodyView").append("<div id='main"+vi+"' style='width:800px;height:100px;'></div><br>")
 				var myChart = echarts.init(document.getElementById('main'+vi));
