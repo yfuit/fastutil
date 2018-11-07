@@ -14,10 +14,10 @@
 		{"id":21,"text":"Eclipse","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/eclipse.html"}},
 		{"id":31,"text":"Mysql","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/mysql.html"}},
 		{"id":41,"text":"Docker","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/docker.html"}},
-		{"id":51,"text":"Pylog","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/pylog.html"}},
+		{"id":51,"text":"Pylog","iconCls":"fa fa-circle-thin","attributes":{"url":"view/java/springcloud.html"}},
 		
-		{"id":81,"text":"about.html","iconCls":"fa fa-circle-thin"},
-		{"id":91,"text":"welcome.html","iconCls":"fa fa-circle-thin"}
+
+		{"id":91,"text":"","iconCls":"fa fa-circle-thin"}
 	]
 
 },
@@ -37,12 +37,9 @@
 			{"id":421,"text":"TOOL","iconCls":"fa fa-camera-retro","attributes":{"url":"view/WORK/HB/HBWork.html"}},
 			{"id":422,"text":"工作报表","iconCls":"fa fa-circle-thin","attributes":{"url":"view/WORK/HB/WORKREPORT.html"}}]
 		},
-		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
-		{"id":52,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"about.html"}},
+		{"id":52,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"welcome.html"}},
 		{"id":53,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
-		{"id":54,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
-		{"id":55,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
-		{"id":77,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}}
 		
 		]
 }
