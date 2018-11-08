@@ -39,7 +39,7 @@
 		},
 		{"id":51,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"about.html"}},
 		{"id":52,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"welcome.html"}},
-		{"id":53,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}},
+		{"id":53,"text":"菜单管理","iconCls":"fa fa-circle-thin","attributes":{"url":"test.html"}}
 		
 		]
 }
