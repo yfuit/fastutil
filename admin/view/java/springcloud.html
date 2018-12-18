@@ -10,6 +10,13 @@
 <p>
 springclould 配置中心想要使用本机配置 要设置启动参数 spring.profiles.active = native 
 </p>
+    
+<p>ribbon负载均衡BUG</p>
+<p>
+    zuul自定义负载均衡中，访问服务A,B 再次访问服务A获取servers是B的servers
+    getLoadBalancer().getAllServers();
+</p>
+    
 <br/>
 
 
