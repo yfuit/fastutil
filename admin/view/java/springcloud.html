@@ -16,10 +16,86 @@ springclould 配置中心想要使用本机配置 要设置启动参数 spring.p
     zuul自定义负载均衡中，访问服务A,B 再次访问服务A获取servers是B的servers
     getLoadBalancer().getAllServers();
 </p>
-    
-<br/>
+<p>ribbon负载均衡BUG 解决</p>
+<textarea>
+    package com.example.demo;
 
 
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerRequest;
+
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
+
+public class MyFilter extends ZuulFilter {
+
+	@Autowired
+    private org.springframework.cloud.client.discovery.DiscoveryClient client;
+	
+	@Autowired
+    private LoadBalancerClient loadBalancerClient;
+	
+	@Override
+	public boolean shouldFilter() {
+		return true;
+	}
+	@Override
+	public Object run() {
+		System.err.println(String.format("zuull filter : %s", RequestContext.getCurrentContext().getRequest().getRequestURL()));
+		String uri = RequestContext.getCurrentContext().getRequest().getRequestURI();
+		System.err.println("service:"+client.getServices());
+		System.err.println(String.format("uri:%s,splite:%s",uri,uri.split("/")[2]));
+		String serviceId = uri.split("/")[2];
+		
+		List<ServiceInstance> listId = client.getInstances(serviceId);
+		
+		System.err.println( "Instances："+listId);
+		
+		ServiceInstance serviceInstance = null;
+		
+		for(ServiceInstance s : listId) {
+			if(s.getPort() == 12811) {
+				serviceInstance = s;
+				break;
+			}
+		}
+		if(null == serviceInstance) {
+			serviceInstance = listId.get(0);
+		}
+		ServiceInstance a = serviceInstance;
+		
+		LoadBalancerRequest<ServiceInstance> request = new LoadBalancerRequest<ServiceInstance>() {
+			@Override
+			public ServiceInstance apply(ServiceInstance instance) throws Exception {
+				instance = a;
+				return instance;
+			}
+		};
+		try {
+			loadBalancerClient.execute(serviceId, request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@Override
+	public String filterType() {
+		return "pre";
+	}
+
+	@Override
+	public int filterOrder() {
+		return 0;
+	}
+
+}
+    </textarea>
 </body>
 <script>
 </script>
