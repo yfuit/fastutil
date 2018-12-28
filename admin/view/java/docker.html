@@ -20,6 +20,10 @@ docker run -p 3306:3306 --name mymysql -v $PWD/conf:/etc/mysql/conf.d -v $PWD/lo
 </p>
 <br/><br/>
 
+<p>开始一个gitlab</p>
+<p>  
+     docker run -d --hostname gitlab --publish 8443:443 --publish 8086:80 --publish 2212:22 --name gitlab --restart always --volume $GITLAB_HOME/config:/etc/gitlab --volume $GITLAB_HOME/logs:/var/log/gitlab --volume $GITLAB_HOME/data:/var/opt/gitlab gitlab/gitlab-ce
+</p>
     
 </body>
 <script>
