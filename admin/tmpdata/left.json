@@ -23,7 +23,8 @@
 },
 {"id":20,"text":"PYTHON","iconCls":"fa fa-windows","state":"closed" 
 	,"children":[
-		{"id":21,"text":"Code","iconCls":"fa fa-circle-thin","attributes":{"url":"view/python/code.html"}}
+		{"id":21,"text":"Code","iconCls":"fa fa-circle-thin","attributes":{"url":"view/python/code.html"}},
+		{"id":22,"text":"pythonDB","iconCls":"fa fa-circle-thin","attributes":{"url":"view/python/pydb.html"}}
 	]
 },
 
