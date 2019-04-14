@@ -1,0 +1,62 @@
+<textarea>
+import pymysql
+
+class pydb:
+
+    @staticmethod
+    def init():
+        db = pymysql.connect(host="114.115.215.51",user="root",passwd="10benshu",database="xinyuejj",port =3306,cursorclass = pymysql.cursors.DictCursor);
+        return db
+
+    @staticmethod
+    def execute(sqlStr,args={}):
+        db = pydb.init()
+        cursor = db.cursor()
+        resultCnt = cursor.execute(sqlStr,args)
+        db.commit()
+        db.close()
+        return resultCnt;
+
+    @staticmethod
+    def insertForId(sqlStr,args={}):
+        db = pydb.init()
+        cursor = db.cursor()
+        resultCnt = cursor.execute(sqlStr,args)
+        db.commit()
+        db.close()
+        return cursor.lastrowid;
+
+    @staticmethod
+    def query(sqlStr,args={}):
+        db = pydb.init()
+        cursor = db.cursor()
+        resultCnt = cursor.execute(sqlStr,args)
+        db.commit()
+        result = cursor.fetchall()
+        db.close()
+        return result
+
+    @staticmethod
+    def getInt(sqlStr,args={}):
+        db = pydb.init()
+        cursor = db.cursor()
+        resultCnt = cursor.execute(sqlStr,args)
+        db.commit()
+        result = cursor.fetchone()
+        db.close()
+        for key in result:
+            return result[key]
+
+    @staticmethod
+    def getStr(sqlStr,args={}):
+        db = pydb.init()
+        cursor = db.cursor()
+        resultCnt = cursor.execute(sqlStr,args)
+        db.commit()
+        result = cursor.fetchone()
+        db.close()
+        for key in result:
+            return result[key]
+
+
+</teatarea>
